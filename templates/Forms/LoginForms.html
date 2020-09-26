@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light navbar-laravel">
+        <div class="container">
+            <a class="navbar-brand" href="{{url_for('index2')}}">AI4Creator</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <!-- <a class="nav-link" href="{{url_for('LOGIN')}}">Login</a> -->
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Register</a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+    <style>
+        .my-form {
+            padding-top: 1.5rem;
+            padding-bottom: 1.5rem;
+        }
+
+        .my-form .row {
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        .login-form {
+            padding-top: 1.5rem;
+            padding-bottom: 1.5rem;
+        }
+
+        .login-form .row {
+            margin-left: 0;
+            margin-right: 0;
+        }
+    </style>
+    <main class="my-form">
+        <div class="cotainer">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card">
+                            {% with messages = get_flashed_messages(with_categories=true) %}
+                            {% if messages %}
+                            {% for category, message in messages %}    
+                        <!-- style="background-color: green"    -->
+                            <div class="alert-alert-{{ category }}" > 
+                              <h4 >   {{ message }} </h4>
+                            </div>
+                            {% endfor %}
+                           {% endif %}
+                           {% endwith %}
+                           
+
+                        <div class="card-header">Login</div>
+                        <div class="card-body">
+                            <form name="my-form" onsubmit="return validform()" action="" method="POST">
+                                {{ form2.hidden_tag() }}                       
+
+                        <div class="form-group row">
+                            <!-- <label for="user_name" class="col-md-4 col-form-label text-md-right">User Name</label> -->
+                            {{form2.Username.label(class="col-md-4 col-form-label text-md-right")}}
+
+                            <div class="col-md-6">
+                                {% if form2.Username.errors %}
+                                {{form2.Username(class="form-control is-invalid")}}
+                                <div class="invalid-feedback">
+                                    {% for error in form2.Username.errors %}
+                                    <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                                {% else %}
+                                {{form2.Username(class="form-control")}}
+                                {% endif %}
+
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <!-- <label for="user_name" class="col-md-4 col-form-label text-md-right">Password</label> -->
+                            {{form2.Password.label(class="col-md-4 col-form-label text-md-right")}}
+
+                            <div class="col-md-6">
+                                {% if form2.Password.errors %}
+                                {{form2.Password(class="form-control is-invalid")}}
+                                <div class="invalid-feedback">
+                                    {% for error in form2.Password.errors %}
+                                    <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                                {% else %}
+                                {{form2.Password(class="form-control")}}
+                                {% endif %}
+
+                            </div>
+                        </div>
+
+                        <!-- <div class="form-group row">
+                                    <label for="nid_number" class="col-md-4 col-form-label text-md-right"><abbr
+                                                title="National Id Card">NID</abbr> Number</label>
+                                    <div class="col-md-6">
+                                        <input type="text" id="nid_number" class="form-control" name="nid-number">
+                                    </div>
+                                </div> -->
+
+                        <div class="col-md-6 offset-md-4">
+                            {{form2.submit(class="btn btn-outline-info")}}
+                        </div>
+                    </div>
+                    </form>
+                </div>  
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+</body>
+
+</html>
